@@ -1,0 +1,22 @@
+0000-                  2                .TF     memdump.hex,int
+0000-                  3        *
+0000-                  4        * 1802 Membership Card U2 ROM dump program
+0000-                  5        * SB-Assembler
+0000-                  6        *
+0000-                  7                .CR     1802
+0000-                  8                .OR     $0000
+0000-                  9        *
+0000-E3               10 (   2) START:  SEX 3           ;X<-R3
+0001-90               11 (   2)         GHI 0           ;D<-R0.1 $00xx
+0002-A3               12 (   2)         PLO 3           ;R3.0<-D=0
+0003-F8 80            13 (   2)         LDI #$80
+0005-B3               14 (   2)         PHI 3           ;R3.0<-80     ; R3=$8000
+0006-64               15 (   2) LOOP1:  OUT 4           ;bus=M(RX)
+0007-F8 80            16 (   2)         LDI #$80        ;wait
+0009-B2               17 (   2)         PHI 2
+000A-22               18 (   2) LOOP2:  DEC 2
+000B-92               19 (   2)         GHI 2
+000C-3A 0A            20 (   2)         BNZ LOOP2
+000E-30 06            21 (   2)         BR LOOP1
+0010-                 22        *
+0010-                 23                .EN
